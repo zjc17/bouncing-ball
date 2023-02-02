@@ -15,11 +15,9 @@ const { ccclass, property } = _decorator;
  *
  */
 
-// 加速下落：调整重力加速度系数
+// 加速下落：设置小球线性速度
 
 const CONTRACT_VELOCITY = cc.v2(0, -12);
-const NORMAL_GRAVITY_SCALE = 1;
-const BOOST_GRAVITY_SCALE = 5;
 
 @ccclass('Ball')
 export class RobotBall extends Component {
@@ -29,6 +27,9 @@ export class RobotBall extends Component {
 
     @property(cc.CircleCollider2D)
     ballCollider: cc.CircleCollider2D = null;
+
+    @property(cc.RigidBody2D)
+    ballRigidBody: cc.RigidBody2D = null;
 
     onLoad() {
         this.ballCollider.on(cc.Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
@@ -48,13 +49,12 @@ export class RobotBall extends Component {
 
     // 取消加速下落
     disableBoost() {
-        const ballRigidBody = this.ballNode.getComponent(cc.RigidBody2D);
-        ballRigidBody.gravityScale = NORMAL_GRAVITY_SCALE;
-        ballRigidBody.linearVelocity = CONTRACT_VELOCITY
+        this.ballRigidBody.linearVelocity = CONTRACT_VELOCITY
     }
 
     // 在两个碰撞体开始接触时被调用一次
     onBeginContact() {
+        cc.log('onBeginContact')
         this.disableBoost();
         // cc.log(this.ballNode.getComponent(cc.RigidBody2D).linearVelocity = CONTRACT_VELOCITY)
     }
