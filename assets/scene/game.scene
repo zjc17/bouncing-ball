@@ -373,7 +373,27 @@
     "_id": "a8s8m5AchPzZbWG30IFsgi"
   },
   {
-    "__type__": "cc.CircleCollider2D",
+    "__type__": "d4f9evCrd9PjZ+OIXZR+DWz",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 6
+    },
+    "_enabled": true,
+    "__prefab": null,
+    "ballNode": {
+      "__id__": 6
+    },
+    "ballCollider": {
+      "__id__": 11
+    },
+    "ballRigidBody": {
+      "__id__": 9
+    },
+    "_id": "e7xBkPqe9FF7Of9XgpNYgZ"
+  },
+  {
+    "__type__": "cc.BoxCollider2D",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -390,30 +410,14 @@
     "_offset": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": 0
+      "y": -20
     },
-    "_radius": 25,
-    "_id": "02Xe7LpkdB051pveQcYNCP"
-  },
-  {
-    "__type__": "d4f9evCrd9PjZ+OIXZR+DWz",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 6
+    "_size": {
+      "__type__": "cc.Size",
+      "width": 25,
+      "height": 4
     },
-    "_enabled": true,
-    "__prefab": null,
-    "ballNode": {
-      "__id__": 6
-    },
-    "ballCollider": {
-      "__id__": 10
-    },
-    "ballRigidBody": {
-      "__id__": 9
-    },
-    "_id": "e7xBkPqe9FF7Of9XgpNYgZ"
+    "_id": "70lneZGp5EZLXbAalvtkuh"
   },
   {
     "__type__": "cc.Node",

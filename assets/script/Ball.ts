@@ -25,8 +25,8 @@ export class RobotBall extends Component {
     @property(cc.Node)
     ballNode: cc.Node = null;
 
-    @property(cc.CircleCollider2D)
-    ballCollider: cc.CircleCollider2D = null;
+    @property(cc.BoxCollider2D)
+    ballCollider: cc.BoxCollider2D = null;
 
     @property(cc.RigidBody2D)
     ballRigidBody: cc.RigidBody2D = null;
