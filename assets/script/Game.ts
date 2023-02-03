@@ -116,6 +116,15 @@ export class Game extends Component {
         // 保存最高得分
         const bestScore = Math.max(this.score, parseInt(cc.sys.localStorage.getItem('best-score') || '0'));
         cc.sys.localStorage.setItem('best-score', bestScore.toString());
+        
+
+        // 埋点
+        cocosAnalytics.CACustomEvent.onSuccess("game-over", {
+            name: "game-over",
+            score: this.score,
+            bestScore: bestScore,
+        });
+
         // 切换场景
         cc.director.loadScene('GameOver');
     }

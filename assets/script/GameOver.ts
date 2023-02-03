@@ -46,6 +46,11 @@ export class GameOver extends Component {
     }
 
     onRetartButtonClick() {
+        const onLaunched = () => {
+            cocosAnalytics.CACustomEvent.onSuccess("restart-game", {
+                name: "click-restart-button",
+            });
+        }
         cc.director.loadScene('game');
     }
 }

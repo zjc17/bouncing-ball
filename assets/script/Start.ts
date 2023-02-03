@@ -23,6 +23,17 @@ export class Start extends Component {
 
     onLoad() {
         this.startButton.node.on('click', this.onStartButtonClick, this);
+        this.initCocosAnalytics();
+    }
+
+    initCocosAnalytics() {
+        cocosAnalytics.init({
+            appID: "654050385", // 游戏ID
+            version: "1.0.0",   // 游戏/应用版本号
+            storeID: "H5",      // 分发渠道
+            engine: "cocos",    // 游戏引擎
+        });
+        cocosAnalytics.enableDebug(true);
     }
 
     onDestory() {
@@ -38,6 +49,11 @@ export class Start extends Component {
     }
 
     onStartButtonClick() {
-        cc.director.loadScene('game');
+        const onLaunched = () => {
+            cocosAnalytics.CACustomEvent.onSuccess("start-game", {
+                name: "click-start-button",
+            });
+        }
+        cc.director.loadScene('game', onLaunched);
     }
 }

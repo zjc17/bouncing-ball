@@ -39,8 +39,8 @@
           "enable": true,
           "param": {
             "app_id": "654050385",
-            "store_id": "",
-            "store_id_platform": "",
+            "store_id": "160163",
+            "store_id_platform": "H5",
             "plugin_version": "2.1.2_3.0.2"
           }
         }
