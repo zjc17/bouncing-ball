@@ -34,6 +34,9 @@ export class Start extends Component {
             engine: "cocos",    // 游戏引擎
         });
         cocosAnalytics.enableDebug(true);
+        cocosAnalytics.CAAccount.loginStart({
+            channel: '99999',   // 获客渠道，指获取该客户的广告渠道信息   
+        });
     }
 
     onDestory() {
