@@ -1,6 +1,7 @@
 import { _decorator, Component, Node, input, Input } from 'cc';
 const { ccclass, property } = _decorator;
 import * as cc from 'cc';
+import { Block } from './Block';
 
 // 砖块的X轴质点间距
 const BLOCK_INTERVAL = 200;
@@ -61,6 +62,7 @@ export class Game extends Component {
         const START_X_POSITION = this.ballNode.position.x;
         for (let i = 0; i < 4; i++) {
             const blockNode = cc.instantiate(this.blockPrefeb);
+            blockNode.getComponent(Block).init({width: 100 + 20 * cc.math.randomRange(0, 3)}) 
             blockNode.setPosition(START_X_POSITION + i * BLOCK_INTERVAL, BLOCK_Y_POSITION);
             this.blockSpawnerNode.addChild(blockNode);
             this.blockNodePool.push(blockNode);
@@ -78,7 +80,12 @@ export class Game extends Component {
             if (blockNode.getPosition().x < GC_THRESHOLD) {
                 const maxXPosition = Math.max(...this.blockNodePool.map((blockNode) => blockNode.getPosition().x));
                 blockNode.setPosition(maxXPosition + BLOCK_INTERVAL, BLOCK_Y_POSITION);
+                blockNode.getComponent(Block).isPassed = false;
                 // cc.log('this.blockNodePool.map((blockNode) => blockNode.getPosition().x)', this.blockNodePool.map((blockNode) => blockNode.getPosition().x))
+            }
+            // 平板经过小球时添加得分
+            if (!blockNode.getComponent(Block).isPassed && blockNode.position.x < this.ballNode.position.x) {
+                blockNode.getComponent(Block).isPassed = true;
                 // 增加得分
                 this.score++;
                 this.updateScoreLabel();

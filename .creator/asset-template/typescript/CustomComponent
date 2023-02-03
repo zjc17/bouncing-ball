@@ -16,7 +16,7 @@ const { ccclass, property } = _decorator;
  */
 
 @ccclass('<%CamelCaseClassName%>')
-export class Robot<%CamelCaseClassName%> extends Component {
+export class <%CamelCaseClassName%> extends Component {
     start() {
 
     }
