@@ -32,11 +32,12 @@ export class Game extends Component {
     score: number = 0;
 
     start() {
-
+        cc.director.preloadScene('GameOver', () => {cc.log('preload [GameOver] scene')});
     }
 
     update(deltaTime: number) {
         this.updateBlocks(deltaTime);
+        this.checkResult();
     }
 
     onLoad() {
@@ -101,6 +102,22 @@ export class Game extends Component {
     boost() {
         const ballRigidBody = this.ballNode.getComponent(cc.RigidBody2D);
         ballRigidBody.linearVelocity = cc.v2(0, -12);
+    }
+
+    checkResult() {
+        if (this.ballNode.position.y < -400) {
+            this.gameOver();
+        }
+    }
+
+    gameOver() {
+        // 保存得分
+        cc.sys.localStorage.setItem('last-score', this.score.toString());
+        // 保存最高得分
+        const bestScore = Math.max(this.score, parseInt(cc.sys.localStorage.getItem('best-score') || '0'));
+        cc.sys.localStorage.setItem('best-score', bestScore.toString());
+        // 切换场景
+        cc.director.loadScene('GameOver');
     }
 
 }
